@@ -14,7 +14,7 @@ import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectMainPage from './selectors';
+import { makeFeaturedEventsSelector, makeEventSelector } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
@@ -36,10 +36,13 @@ export class MainPage extends React.Component {
 
 MainPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  featuredEvents: PropTypes.array,
+  events: PropTypes.array,
 };
 
 const mapStateToProps = createStructuredSelector({
-  mainPage: makeSelectMainPage(),
+  featuredEvents: makeFeaturedEventsSelector(),
+  events: makeEventSelector(),
 });
 
 function mapDispatchToProps(dispatch) {
